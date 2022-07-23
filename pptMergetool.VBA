@@ -1,18 +1,29 @@
 '   Run this script inside the same folder of powerpoint that requires merging.
 '   Do no attempt to insert this file to itself.
-Sub pptMergeVBA()
-    '   Variables
+Sub InsertAllSlides()
+    
     Dim vArray() As String
     Dim x As Long
     Dim strInput As String
-
-    ' Take user input
+    Dim FileName As String
+    Dim saveName As String
+    Dim timeStamp As String
+    Dim NewPres As Presentation
+    
+    Set NewPres = Presentations.Add
+    
+    FileName = InputBox("Enter a name of powerpoint you wish to create: ", "Powerpoint create", "Enter your input text HERE")
+    FileLocation = InputBox("Enter a location where you wish to save your powerpoint", "Powerpoint create", "Enter your input text HERE")
+    saveName = FileName & ".pptx"
+    
+    Path = FileLocation
+    NewPres.SaveAs Path & saveName
+    
     Keyword = InputBox("Enter search keyword: ", "Keyword search", "Enter your input text HERE")
-
-    '   Filter by keyword
-    EnumerateFiles ActivePresentation.Path & "\", Keyword + "*.PPTX", vArray
-
-    '   For loop to combine the files together
+    RunLocation = InputBox("Enter the location where you want to merge powerpoint", "Powerpoint location", "Enter your input text HERE")
+    
+    EnumerateFiles RunLocation & "\", Keyword + "*.PPTX", vArray
+    
     With ActivePresentation
         For x = 1 To UBound(vArray)
             If Len(vArray(x)) > 0 Then
