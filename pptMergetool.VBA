@@ -5,29 +5,29 @@ Sub InsertAllSlides()
     Dim vArray() As String
     Dim x As Long
     Dim strInput As String
-    Dim FileName As String
+    Dim fileName As String
     Dim saveName As String
     Dim timeStamp As String
     Dim NewPres As Presentation
     
     Set NewPres = Presentations.Add
     
-    FileName = InputBox("Enter a name of powerpoint you wish to create: ", "Powerpoint create", "Enter your input text HERE")
-    FileLocation = InputBox("Enter a location where you wish to save your powerpoint", "Powerpoint create", "Enter your input text HERE")
-    saveName = FileName & ".pptx"
+    fileName = InputBox("Enter a name for the Powerpoint: ", "Powerpoint create", "Enter your input text HERE")
+    FileLocation = InputBox("Enter a location where you wish to the this file: ", "Powerpoint save location", "Enter your input text HERE")
+    saveName = fileName & ".pptx"
     
     Path = FileLocation
     NewPres.SaveAs Path & saveName
     
-    Keyword = InputBox("Enter search keyword: ", "Keyword search", "Enter your input text HERE")
-    RunLocation = InputBox("Enter the location where you want to merge powerpoint", "Powerpoint location", "Enter your input text HERE")
+    Keyword = InputBox("Enter a search keyword: ", "Keyword search", "Enter your input text HERE")
+    RunLocation = InputBox("Enter the lococation to search: ", "Powerpoint search location", "Enter your input text HERE")
     
     EnumerateFiles RunLocation & "\", Keyword + "*.PPTX", vArray
-    
+        
     With ActivePresentation
         For x = 1 To UBound(vArray)
             If Len(vArray(x)) > 0 Then
-                .Slides.InsertFromFile vArray(x), .Slides.Count
+                .Slides.InsertFromFile vArray(x), .Slides.count
             End If
         Next
     End With
