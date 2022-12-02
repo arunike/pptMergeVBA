@@ -1,5 +1,6 @@
 # pptMergeVBA
 
+## Description
 <p> A Office 360 Macro that allows the user to merge specific filtered powerpoint together. 
   User is first prompted to input boxes, where they could enter name, save location, keyword, and location of the powerpoint name that they wish to combine. 
   Then, it will search through the folder and combine all the matching powerpoint.
